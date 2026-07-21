@@ -1,0 +1,30 @@
+{
+  "name": "jobscout",
+  "version": "0.1.9",
+  "description": "Guided job search and ranking against the live Job Scout catalog.",
+  "author": {
+    "name": "Aleksander Goli"
+  },
+  "repository": "https://github.com/olekgoli/jobscout-codex",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Job Scout",
+    "shortDescription": "Find jobs matched to your profile.",
+    "longDescription": "Builds a private local candidate profile, searches the live read-only Job Scout catalog, and ranks realistic offers.",
+    "developerName": "Aleksander Goli",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Read"],
+    "defaultPrompt": [
+      "Znajdź mi pracę.",
+      "Pokaż spokojniejsze oferty z dobrym WLB.",
+      "Znajdź role rozwojowe bez eksperckich wymagań."
+    ]
+  },
+  "mcpServers": {
+    "jobscout": {
+      "type": "http",
+      "url": "https://praca-mcp.micek.top/mcp",
+      "bearer_token_env_var": "JOBSCOUT_MCP_KEY"
+    }
+  }
+}
