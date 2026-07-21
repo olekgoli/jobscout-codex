@@ -1,6 +1,6 @@
 {
   "name": "jobscout",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Guided job search and ranking against the live Job Scout catalog.",
   "author": {
     "name": "Aleksander Goli"

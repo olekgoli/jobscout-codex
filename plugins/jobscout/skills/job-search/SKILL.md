@@ -122,15 +122,18 @@ Updated: YYYY-MM-DD
 
 Never merge the four technology buckets. "Wants to learn" is not experience, and a skill required
 from day one is not a learning opportunity. Record unknown answers under `Unknowns`; do not infer
-experience from job titles. Save to the surface-specific location above, tell the user where the
-profile was saved, and then ask for the first search request.
+experience from job titles. When the user states a preference about offers without published
+salary ranges, record `Missing salary: include` or `Missing salary: exclude` under `Search
+defaults`; do not require this preference during onboarding. Save to the surface-specific location
+above, tell the user where the profile was saved, and then ask for the first search request.
 
 ### Existing profile
 
 Do not repeat onboarding. A terse prompt must be enough. Ask a follow-up only when a missing answer
 would materially change hard filtering; otherwise use the saved defaults and state the assumption.
 When the user asks to improve the profile or supplies a new CV, offer the same optional evidence
-review before saving any explicit profile update.
+review before saving any explicit profile update. If the user explicitly asks to remember a search
+preference, update the relevant line under `Search defaults` and confirm the saved profile path.
 
 ## Non-negotiable ranking rules
 
@@ -160,7 +163,11 @@ from an Azure/DevOps background.
 1. Call `get_catalog_facets` when exact filter values are not already known.
 2. Turn remote mode, contracts, working time, dates, location, and salary floor into shared
    `search_many` filters. `salary_min` means an option can reach that monthly amount; verify the
-   relevant contract and actual range in offer details.
+   relevant contract and actual range in offer details. When the request or saved `Missing salary:
+   include` preference includes offers without published ranges, omit `salary_min`, keep offers
+   whose compensation is unknown as `do potwierdzenia`, and reject only offers whose explicit,
+   comparable maximum is below the user's minimum. A one-search request does not change the saved
+   preference unless the user explicitly asks to remember it.
 3. Build one diversified `search_many` request from target role families, proven day-one skills,
    desired responsibilities, and learning goals. Give every search a stable ID. Use `expression`
    with `must`, `should`, `must_not`, `any_of`, `all_of`, `exact_phrase`, and documented fields
